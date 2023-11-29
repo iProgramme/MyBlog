@@ -7,7 +7,7 @@ title: 博客
 subtitle:
 description:
 keywords:
-author: 喻博文
+author: 郭减
 language: zh-Hans
 timezone:
 
@@ -21,7 +21,7 @@ local_search:
   enable: true
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yubowen2003.com
+url: https://iprogramme.github.io/MyBlog/
 root: /blog/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -87,12 +87,14 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: https://github.com/iProgramme/MyBlog.git
+  branch: master
 
 
-algolia:
-  applicationID: 46JOM4H9C1
-  apiKey: fe254fea41e5ce0a8198f6df1889926e
-  adminApiKey: 4cf6b43b3e7c07a48dbdb5a4f5920c4f
-  indexName: index
-  chunkSize: 5000
+# algolia:
+#   applicationID: 46JOM4H9C1
+#   apiKey: fe254fea41e5ce0a8198f6df1889926e
+#   adminApiKey: 4cf6b43b3e7c07a48dbdb5a4f5920c4f
+#   indexName: index
+#   chunkSize: 5000
