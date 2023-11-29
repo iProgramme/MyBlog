@@ -9,7 +9,7 @@
     "server": "hexo server"
   },
   "hexo": {
-    "version": "3.8.0"
+    "version": "7.0.0"
   },
   "dependencies": {
     "hexo-algolia": "^1.2.5",
