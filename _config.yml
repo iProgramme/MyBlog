@@ -88,7 +88,7 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/iProgramme/BlogPages.git
+  repo: git@github.com:iProgramme/MyBlog.git
   branch: master
 
 
