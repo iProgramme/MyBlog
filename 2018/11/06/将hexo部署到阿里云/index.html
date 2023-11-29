@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>本文教学如何将 hexo 博客部署到阿里云 | 博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="首先登陆你的服务器 安装 yum目的是为了安装Nginx，如果已经安装Nginx，这一步可以忽略 1apt install yum  安装Nginx在部署 Hexo 博客时推荐使用 Nginx 的主要原因有几点：  Web 服务器功能： Nginx 是一个高性能的反向代理服务器，它可以负责处理 HTTP 请求并将它们转发到相应的服务。对于 Hexo 博客，Nginx 可以作为 HTTP 服务器来提">
+<meta property="og:type" content="article">
+<meta property="og:title" content="本文教学如何将 hexo 博客部署到阿里云">
+<meta property="og:url" content="https://iprogramme.github.io/MyBlog/2018/11/06/%E5%B0%86hexo%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91/index.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="首先登陆你的服务器 安装 yum目的是为了安装Nginx，如果已经安装Nginx，这一步可以忽略 1apt install yum  安装Nginx在部署 Hexo 博客时推荐使用 Nginx 的主要原因有几点：  Web 服务器功能： Nginx 是一个高性能的反向代理服务器，它可以负责处理 HTTP 请求并将它们转发到相应的服务。对于 Hexo 博客，Nginx 可以作为 HTTP 服务器来提">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-11-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2018-11-12T16:00:00.000Z">
+<meta property="article:author" content="郭减">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="es6">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://iprogramme.github.io/MyBlog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-将hexo部署到阿里云" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018/11/06/%E5%B0%86hexo%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91/" class="article-date">
+  <time datetime="2018-11-05T16:00:00.000Z" itemprop="datePublished">2018-11-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/js/">js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      本文教学如何将 hexo 博客部署到阿里云
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先登陆你的服务器</p>
+<h3 id="安装-yum"><a href="#安装-yum" class="headerlink" title="安装 yum"></a>安装 yum</h3><p>目的是为了安装Nginx，如果已经安装Nginx，这一步可以忽略</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install yum</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h3><p>在部署 Hexo 博客时推荐使用 Nginx 的主要原因有几点：</p>
+<ol>
+<li><p><strong>Web 服务器功能：</strong> Nginx 是一个高性能的反向代理服务器，它可以负责处理 HTTP 请求并将它们转发到相应的服务。对于 Hexo 博客，Nginx 可以作为 HTTP 服务器来提供博客的访问服务。</p>
+</li>
+<li><p><strong>负载均衡和反向代理：</strong> 如果你的 Hexo 博客访问量较大，Nginx 可以用作负载均衡器，分发流量到多个 Hexo 博客实例，提高系统的可伸缩性。同时，Nginx 的反向代理功能能够隐藏后端服务的细节，增强了安全性。</p>
+</li>
+<li><p><strong>静态文件服务：</strong> Hexo 生成的博客是静态文件，Nginx 在处理静态文件上有很高的效率。通过 Nginx 提供静态文件服务，可以减轻 Hexo 本身的负担，提高博客的加载速度。</p>
+</li>
+<li><p><strong>SSL&#x2F;TLS 支持：</strong> 如果你希望启用 HTTPS，Nginx 提供了方便的 SSL&#x2F;TLS 配置。它能够处理加密和解密操作，确保博客的数据传输是安全的。</p>
+</li>
+<li><p><strong>灵活的配置和强大的功能：</strong> Nginx 提供了灵活的配置文件，使得你能够根据需要进行自定义配置。此外，Nginx 还支持反向代理、缓存、压缩等功能，为博客提供了更多的性能和功能优化选项。</p>
+</li>
+</ol>
+<p>综合考虑这些因素，使用 Nginx 作为 Hexo 博客的前端服务器是一种常见的选择。然而，这并不是唯一的选择，你也可以考虑使用其他 Web 服务器或服务来托管 Hexo 博客，取决于你的需求和偏好。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y nginx</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://iprogramme.github.io/MyBlog/2018/11/06/%E5%B0%86hexo%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91/" data-id="clpj81tiq000dad9vbglm28u8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/es6/" rel="tag">es6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2018/11/08/es6%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%B8%B8%E7%94%A8%E7%9A%84%E7%AE%80%E5%8D%95%E8%AF%AD%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          es6基础之常用的简单语法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2018/11/06/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">浏览器基础之变量提升 -- JavaScript 预解析</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/demo/">demo</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E7%88%AC%E8%99%AB/">爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Promise/" rel="tag">Promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6/" rel="tag">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6%EF%BC%8C%E5%89%8D%E7%AB%AF/" rel="tag">es6，前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/node-js/" rel="tag">node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/blog/tags/css/" style="font-size: 10px;">css</a> <a href="/blog/tags/es6/" style="font-size: 16.67px;">es6</a> <a href="/blog/tags/es6%EF%BC%8C%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">es6，前端</a> <a href="/blog/tags/html/" style="font-size: 10px;">html</a> <a href="/blog/tags/js/" style="font-size: 20px;">js</a> <a href="/blog/tags/node/" style="font-size: 10px;">node</a> <a href="/blog/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/blog/tags/promise/" style="font-size: 10px;">promise</a> <a href="/blog/tags/python/" style="font-size: 10px;">python</a> <a href="/blog/tags/web/" style="font-size: 10px;">web</a> <a href="/blog/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 13.33px;">前端</a> <a href="/blog/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/blog/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2018/11/20/js%E6%95%B0%E7%BB%84%E5%AF%B9%E8%B1%A1%E5%8E%BB%E9%87%8D/">js 数组对象去重</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/11/20/%E6%89%8B%E5%86%99promise%E5%88%86%E6%9E%90/">手把手教你写promise，帮你分析promise的执行过程</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/11/19/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B8%80%20%E4%B9%8B%20%E6%89%93%E5%8C%85/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/11/11/node.js%E7%88%AC%E8%99%AB%E4%B8%AD%E5%85%B3%E6%9D%91%E5%9C%A8%E7%BA%BF%E7%94%B5%E7%93%B6%E8%BD%A6%E4%BF%A1%E6%81%AF/">node.js爬虫中关村在线电瓶车信息</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/11/10/es6%E5%9F%BA%E7%A1%80%E4%B9%8Bpromise/">es6基础之Promise</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 郭减<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+
+  
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

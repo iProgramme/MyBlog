@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前端页面性能优化一 之 打包说明：我这里用的是vue项目，vue-cli 3.0 ，本文以此为例 解决问题的方式，都直接在“方法”里面写了，有不懂的，欢迎大家交流😂 去sourceMap方法：找到 vue.config.js 文件，找到 productionSourceMap 将其改为 false ，完 效果： 总结：可以看到，打包前，48个文件，其中有四个是以  .map 结尾的文件，这个时候">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博客">
+<meta property="og:url" content="https://iprogramme.github.io/MyBlog/2018/11/19/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B8%80%20%E4%B9%8B%20%E6%89%93%E5%8C%85/index.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="前端页面性能优化一 之 打包说明：我这里用的是vue项目，vue-cli 3.0 ，本文以此为例 解决问题的方式，都直接在“方法”里面写了，有不懂的，欢迎大家交流😂 去sourceMap方法：找到 vue.config.js 文件，找到 productionSourceMap 将其改为 false ，完 效果： 总结：可以看到，打包前，48个文件，其中有四个是以  .map 结尾的文件，这个时候">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-11-19T02:45:37.000Z">
+<meta property="article:modified_time" content="2018-11-19T07:23:11.000Z">
+<meta property="article:author" content="郭减">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://iprogramme.github.io/MyBlog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-性能优化一 之 打包" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018/11/19/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B8%80%20%E4%B9%8B%20%E6%89%93%E5%8C%85/" class="article-date">
+  <time datetime="2018-11-19T02:45:37.000Z" itemprop="datePublished">2018-11-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前端页面性能优化一-之-打包"><a href="#前端页面性能优化一-之-打包" class="headerlink" title="前端页面性能优化一 之 打包"></a>前端页面性能优化一 之 打包</h2><p>说明：我这里用的是vue项目，vue-cli 3.0 ，本文以此为例</p>
+<p>解决问题的方式，都直接在“方法”里面写了，有不懂的，欢迎大家交流😂</p>
+<h3 id="去sourceMap"><a href="#去sourceMap" class="headerlink" title="去sourceMap"></a>去sourceMap</h3><p>方法：找到 vue.config.js 文件，找到 <code>productionSourceMap</code> 将其改为 <code>false</code> ，完</p>
+<p>效果：</p>
+<p>总结：可以看到，打包前，48个文件，其中有四个是以  <code>.map</code> 结尾的文件，这个时候，整个包大概有 6M，在将其改为false之后打包，只有 2.7M 的大小了，是不是很开心😯</p>
+<h3 id="打包-gzip"><a href="#打包-gzip" class="headerlink" title="打包 gzip"></a>打包 gzip</h3><p>方法：</p>
+<ul>
+<li>npm install compression-webpack-plugin –save-dev</li>
+<li>找到 <code>vue.config.js</code> 引入该包，<code>var  CompressionWebpackPlugin = require(&quot;compression-webpack-plugin&quot;)</code></li>
+<li>在 <code>module.exports</code> 里面配置该包</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="attr">configureWebpack</span>: <span class="function">(<span class="params">config</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(process.<span class="property">env</span>.<span class="property">NODE_ENV</span> == <span class="string">&#x27;production&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                <span class="attr">plugins</span>:[</span><br><span class="line">                    <span class="keyword">new</span> <span class="title class_">CompressionWebpackPlugin</span>(&#123;</span><br><span class="line">                        <span class="attr">test</span>:<span class="regexp">/\.js$|\.css$\.html$/</span>,</span><br><span class="line">                        <span class="attr">threshold</span>:<span class="number">10240</span>,</span><br><span class="line">                        <span class="attr">deleteOriginalAssets</span>:<span class="literal">false</span> <span class="comment">// 不删除原js文件</span></span><br><span class="line">                    &#125;)</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>服务端也要配置加载才行，这里我用的 <code>node.js</code> 和 <code>express</code> ，所以配置如下</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> compression = <span class="built_in">require</span>(<span class="string">&#x27;compression&#x27;</span>) <span class="comment">// 引入此包来加载</span></span><br><span class="line"><span class="keyword">var</span> app = <span class="title function_">express</span>()</span><br><span class="line">app.<span class="title function_">use</span>(<span class="title function_">compression</span>());</span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&quot;/blog&quot;</span>,express.<span class="title function_">static</span>(__dirname+<span class="string">&quot;/public&quot;</span>))</span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&quot;/&quot;</span>,express.<span class="title function_">static</span>(__dirname+<span class="string">&quot;/dist&quot;</span>))</span><br><span class="line">app.<span class="title function_">listen</span>(<span class="number">3000</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`loaclhost:3000`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>打包效果：</p>
+<p>页面加载速度效果：</p>
+<p>总结：这个需要后端配合加载才行。前端打包之后，会生成 <code>.gz</code> 结尾的文件，直接丢到服务端加载就好。 <code>deleteOriginalAssets</code> 也可以选为 <code>true</code> 这样打出的包更小，但由于直接用的是 <code>.gz</code> 的文件，所以源文件是否上传到服务器，影响不大，看个人喜好吧😂</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://iprogramme.github.io/MyBlog/2018/11/19/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B8%80%20%E4%B9%8B%20%E6%89%93%E5%8C%85/" data-id="clpj81tis000had9v6klff1qs" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2018/11/20/%E6%89%8B%E5%86%99promise%E5%88%86%E6%9E%90/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          手把手教你写promise，帮你分析promise的执行过程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2018/11/11/node.js%E7%88%AC%E8%99%AB%E4%B8%AD%E5%85%B3%E6%9D%91%E5%9C%A8%E7%BA%BF%E7%94%B5%E7%93%B6%E8%BD%A6%E4%BF%A1%E6%81%AF/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">node.js爬虫中关村在线电瓶车信息</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/demo/">demo</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E7%88%AC%E8%99%AB/">爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Promise/" rel="tag">Promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6/" rel="tag">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6%EF%BC%8C%E5%89%8D%E7%AB%AF/" rel="tag">es6，前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/node-js/" rel="tag">node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/blog/tags/css/" style="font-size: 10px;">css</a> <a href="/blog/tags/es6/" style="font-size: 16.67px;">es6</a> <a href="/blog/tags/es6%EF%BC%8C%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">es6，前端</a> <a href="/blog/tags/html/" style="font-size: 10px;">html</a> <a href="/blog/tags/js/" style="font-size: 20px;">js</a> <a href="/blog/tags/node/" style="font-size: 10px;">node</a> <a href="/blog/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/blog/tags/promise/" style="font-size: 10px;">promise</a> <a href="/blog/tags/python/" style="font-size: 10px;">python</a> <a href="/blog/tags/web/" style="font-size: 10px;">web</a> <a href="/blog/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 13.33px;">前端</a> <a href="/blog/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/blog/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2018/11/20/js%E6%95%B0%E7%BB%84%E5%AF%B9%E8%B1%A1%E5%8E%BB%E9%87%8D/">js 数组对象去重</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/11/20/%E6%89%8B%E5%86%99promise%E5%88%86%E6%9E%90/">手把手教你写promise，帮你分析promise的执行过程</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/11/19/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B8%80%20%E4%B9%8B%20%E6%89%93%E5%8C%85/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/11/11/node.js%E7%88%AC%E8%99%AB%E4%B8%AD%E5%85%B3%E6%9D%91%E5%9C%A8%E7%BA%BF%E7%94%B5%E7%93%B6%E8%BD%A6%E4%BF%A1%E6%81%AF/">node.js爬虫中关村在线电瓶车信息</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/11/10/es6%E5%9F%BA%E7%A1%80%E4%B9%8Bpromise/">es6基础之Promise</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 郭减<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+
+  
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

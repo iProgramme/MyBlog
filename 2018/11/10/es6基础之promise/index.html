@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>es6基础之Promise | 博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="网上很多的教程，都讲的很详细，这里就不赘述了 我只是希望你能用最快的方式学会使用它 Promise 含义Promise 是异步编程的一种解决方案，它由社区最早提出和实现，ES6 将其写进了语言标准，统一了用法，原生提供了Promise对象，是一个可以直接用的js对象（前端和node中都可以直接使用） 前端离不开异步编程，在以前，我们用 ajax 进行数据交互的时候，经常碰到这种情况  先调接口登陆">
+<meta property="og:type" content="article">
+<meta property="og:title" content="es6基础之Promise">
+<meta property="og:url" content="https://iprogramme.github.io/MyBlog/2018/11/10/es6%E5%9F%BA%E7%A1%80%E4%B9%8Bpromise/index.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="网上很多的教程，都讲的很详细，这里就不赘述了 我只是希望你能用最快的方式学会使用它 Promise 含义Promise 是异步编程的一种解决方案，它由社区最早提出和实现，ES6 将其写进了语言标准，统一了用法，原生提供了Promise对象，是一个可以直接用的js对象（前端和node中都可以直接使用） 前端离不开异步编程，在以前，我们用 ajax 进行数据交互的时候，经常碰到这种情况  先调接口登陆">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-11-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2018-11-12T16:00:00.000Z">
+<meta property="article:author" content="郭减">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="es6，前端">
+<meta property="article:tag" content="Promise">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://iprogramme.github.io/MyBlog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-es6基础之promise" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018/11/10/es6%E5%9F%BA%E7%A1%80%E4%B9%8Bpromise/" class="article-date">
+  <time datetime="2018-11-09T16:00:00.000Z" itemprop="datePublished">2018-11-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/js/">js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      es6基础之Promise
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>网上很多的教程，都讲的很详细，这里就不赘述了</p>
+<p>我只是希望你能用最快的方式学会使用它</p>
+<h2 id="Promise-含义"><a href="#Promise-含义" class="headerlink" title="Promise 含义"></a>Promise 含义</h2><p>Promise 是异步编程的一种解决方案，它由社区最早提出和实现，ES6 将其写进了语言标准，统一了用法，原生提供了Promise对象，是一个可以直接用的js对象（前端和node中都可以直接使用）</p>
+<p>前端离不开异步编程，在以前，我们用 ajax 进行数据交互的时候，经常碰到这种情况</p>
+<ol>
+<li>先调接口登陆.</li>
+<li>成功之后调接口获取登陆信息</li>
+<li>成功后调用左侧导航</li>
+<li>成功后调用某个页面的初始化数据，</li>
+<li>成功后，调用接口查询表格</li>
+</ol>
+<h3 id="为什么要使用-Promise"><a href="#为什么要使用-Promise" class="headerlink" title="为什么要使用 Promise"></a>为什么要使用 Promise</h3><p>这个时候，我们的代码就像这样</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">    <span class="attr">url</span>:<span class="string">&#x27;/url1&#x27;</span>,</span><br><span class="line">    <span class="attr">success</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        $.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">            <span class="attr">url</span>:<span class="string">&#x27;/url2&#x27;</span>,</span><br><span class="line">            <span class="attr">success</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">                <span class="comment">// ...</span></span><br><span class="line">                $.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">                    <span class="attr">url</span>:<span class="string">&#x27;/url3&#x27;</span>,</span><br><span class="line">                    <span class="attr">success</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">                        <span class="comment">// ...</span></span><br><span class="line">                        $.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">                            <span class="attr">url</span>:<span class="string">&#x27;/url4&#x27;</span>,</span><br><span class="line">                            <span class="attr">success</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">                                <span class="comment">// ...</span></span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>丑是丑了点，也稍微有点难懂，典型的金字塔代码，但代码没毛病，能跑起来就ok。但是！！！最大的问题在于，明天产品脑子一热，告诉你“那啥，你把第二步和第四步的顺序调换一下”，瞬间想炸啊有木有😂！！！即使提出来，也逃不出层层回调的坑爹掌心😂</p>
+<p>自从有了 Promise 之后，代码就变得好看了很多</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>)=&gt;</span>&#123;</span><br><span class="line">    $.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">        <span class="attr">url</span>:<span class="string">&#x27;/url1&#x27;</span>,</span><br><span class="line">        <span class="attr">success</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="comment">// ...</span></span><br><span class="line">            <span class="title function_">resolve</span>()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>)=&gt;</span>&#123;</span><br><span class="line">        $.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">            <span class="attr">url</span>:<span class="string">&#x27;/url2&#x27;</span>,</span><br><span class="line">            <span class="attr">success</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">                <span class="comment">// ...</span></span><br><span class="line">                <span class="title function_">resolve</span>()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>)=&gt;</span>&#123;</span><br><span class="line">        $.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">            <span class="attr">url</span>:<span class="string">&#x27;/url3&#x27;</span>,</span><br><span class="line">            <span class="attr">success</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">                <span class="comment">// ...</span></span><br><span class="line">                <span class="title function_">resolve</span>()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>于是，我们就可以不断的 <code>new</code> 和 <code>then</code> 下去，而如果需要更改顺序，我们只需要调换两个 <code>then</code> 的顺序就好</p>
+<p>所以，为什么要使用 <code>Promise</code> ？因为可以提高代码的可读性和可维护性</p>
+<h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><p><code>Promise</code> 的使用其实很简单，其实跟回调函数差不多，很容易懂</p>
+<p><code>Promise</code> 中带一个参数 <code>resolve</code> ，当异步操作结束之后，调用该方法就好，在外面就可以 <code>then</code> 了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">123</span>)</span><br><span class="line">        <span class="title function_">resolve</span>()</span><br><span class="line">    &#125;,<span class="number">300</span>)</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">456</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 123</span></span><br><span class="line"><span class="comment">// 456</span></span><br></pre></td></tr></table></figure>
+
+<p>总结： 虽然说 <code>Promise</code> 用起来很简单，但最好能自己手动实现一个 <code>Promise</code> 函数，另外， <code>Promise</code> 的用处很多，后面将陆续介绍</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://iprogramme.github.io/MyBlog/2018/11/10/es6%E5%9F%BA%E7%A1%80%E4%B9%8Bpromise/" data-id="clpj81ti10001ad9vd4brh5a9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Promise/" rel="tag">Promise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/es6%EF%BC%8C%E5%89%8D%E7%AB%AF/" rel="tag">es6，前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2018/11/11/node.js%E7%88%AC%E8%99%AB%E4%B8%AD%E5%85%B3%E6%9D%91%E5%9C%A8%E7%BA%BF%E7%94%B5%E7%93%B6%E8%BD%A6%E4%BF%A1%E6%81%AF/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          node.js爬虫中关村在线电瓶车信息
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2018/11/09/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">hexo搭建个人博客教程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/demo/">demo</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E7%88%AC%E8%99%AB/">爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Promise/" rel="tag">Promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6/" rel="tag">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6%EF%BC%8C%E5%89%8D%E7%AB%AF/" rel="tag">es6，前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/node-js/" rel="tag">node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/blog/tags/css/" style="font-size: 10px;">css</a> <a href="/blog/tags/es6/" style="font-size: 16.67px;">es6</a> <a href="/blog/tags/es6%EF%BC%8C%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">es6，前端</a> <a href="/blog/tags/html/" style="font-size: 10px;">html</a> <a href="/blog/tags/js/" style="font-size: 20px;">js</a> <a href="/blog/tags/node/" style="font-size: 10px;">node</a> <a href="/blog/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/blog/tags/promise/" style="font-size: 10px;">promise</a> <a href="/blog/tags/python/" style="font-size: 10px;">python</a> <a href="/blog/tags/web/" style="font-size: 10px;">web</a> <a href="/blog/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 13.33px;">前端</a> <a href="/blog/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/blog/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2018/11/20/js%E6%95%B0%E7%BB%84%E5%AF%B9%E8%B1%A1%E5%8E%BB%E9%87%8D/">js 数组对象去重</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/11/20/%E6%89%8B%E5%86%99promise%E5%88%86%E6%9E%90/">手把手教你写promise，帮你分析promise的执行过程</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/11/19/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B8%80%20%E4%B9%8B%20%E6%89%93%E5%8C%85/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/11/11/node.js%E7%88%AC%E8%99%AB%E4%B8%AD%E5%85%B3%E6%9D%91%E5%9C%A8%E7%BA%BF%E7%94%B5%E7%93%B6%E8%BD%A6%E4%BF%A1%E6%81%AF/">node.js爬虫中关村在线电瓶车信息</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/11/10/es6%E5%9F%BA%E7%A1%80%E4%B9%8Bpromise/">es6基础之Promise</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 郭减<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+
+  
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

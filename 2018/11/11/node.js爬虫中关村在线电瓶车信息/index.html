@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>node.js爬虫中关村在线电瓶车信息 | 博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="背景最近打算买一辆电瓶车来上下班，但又不知道哪个好，网上是各说纷纭啊，于是就想着，干脆用node.js自己写一个小爬虫，来爬一下中关村在线里面电瓶车的信息吧。 （以后完整代码请前往 www.yubowen2003.com 暂时还在建设中，欢迎大家提issue😂 。） 简介该demo采用node.js作为爬虫，为方便，有些地方使用es6语法，如有不懂，欢迎咨询😊 步骤 第一步，引入需要的库  1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node.js爬虫中关村在线电瓶车信息">
+<meta property="og:url" content="https://iprogramme.github.io/MyBlog/2018/11/11/node.js%E7%88%AC%E8%99%AB%E4%B8%AD%E5%85%B3%E6%9D%91%E5%9C%A8%E7%BA%BF%E7%94%B5%E7%93%B6%E8%BD%A6%E4%BF%A1%E6%81%AF/index.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="背景最近打算买一辆电瓶车来上下班，但又不知道哪个好，网上是各说纷纭啊，于是就想着，干脆用node.js自己写一个小爬虫，来爬一下中关村在线里面电瓶车的信息吧。 （以后完整代码请前往 www.yubowen2003.com 暂时还在建设中，欢迎大家提issue😂 。） 简介该demo采用node.js作为爬虫，为方便，有些地方使用es6语法，如有不懂，欢迎咨询😊 步骤 第一步，引入需要的库  1">
+<meta property="og:locale">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/11/9/166f73fbf48b2e8c?w=2558&h=1466&f=png&s=1941192">
+<meta property="article:published_time" content="2018-11-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2018-11-12T16:00:00.000Z">
+<meta property="article:author" content="郭减">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="node.js">
+<meta property="article:tag" content="爬虫">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/11/9/166f73fbf48b2e8c?w=2558&h=1466&f=png&s=1941192">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://iprogramme.github.io/MyBlog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-node.js爬虫中关村在线电瓶车信息" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018/11/11/node.js%E7%88%AC%E8%99%AB%E4%B8%AD%E5%85%B3%E6%9D%91%E5%9C%A8%E7%BA%BF%E7%94%B5%E7%93%B6%E8%BD%A6%E4%BF%A1%E6%81%AF/" class="article-date">
+  <time datetime="2018-11-10T16:00:00.000Z" itemprop="datePublished">2018-11-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      node.js爬虫中关村在线电瓶车信息
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>最近打算买一辆电瓶车来上下班，但又不知道哪个好，网上是各说纷纭啊，于是就想着，干脆用node.js自己写一个小爬虫，来爬一下中关村在线里面电瓶车的信息吧。</p>
+<p>（以后完整代码请前往 <a href="http://www.yubowen2003.com/">www.yubowen2003.com</a> 暂时还在建设中，欢迎大家提issue😂 。）</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>该demo采用node.js作为爬虫，为方便，有些地方使用es6语法，如有不懂，欢迎咨询😊</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ul>
+<li>第一步，引入需要的库</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cheerio = <span class="built_in">require</span>(<span class="string">&#x27;cheerio&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> fetch = <span class="built_in">require</span>(<span class="string">&#x27;node-fetch&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// cheerio 是一个类似浏览器端的jQuery，用来解析HTML的</span></span><br><span class="line"><span class="comment">// fetch 用来发送请求</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>第二步，设置初始的爬取的入口(我身处杭州，所以地区选了杭州的🤣)</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 初始url</span></span><br><span class="line"><span class="keyword">var</span> url = <span class="string">&quot;http://detail.zol.com.cn/convenienttravel/hangzhou/#list_merchant_loc&quot;</span></span><br><span class="line"><span class="comment">// 由于每个a标签下是相对路径，故需要一个根地址来拼接，如下</span></span><br><span class="line"><span class="keyword">var</span> urlRoot = <span class="string">&quot;http://detail.zol.com.cn&quot;</span> </span><br><span class="line"><span class="comment">// 存放所有url，之所以用set，是为了防止有相同的而重复爬去</span></span><br><span class="line"><span class="keyword">var</span> urls = <span class="keyword">new</span> <span class="title class_">Set</span>()</span><br><span class="line"><span class="comment">// 存储所有数据</span></span><br><span class="line"><span class="keyword">var</span> data = [] </span><br></pre></td></tr></table></figure>
+<p>至此，我们的准备部分结束了😅，接下来，开始表演了</p>
+<ul>
+<li>分析网页，思考爬取的方式</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/9/166f73fbf48b2e8c?w=2558&h=1466&f=png&s=1941192"></p>
+<p>每行4款，每页是48款，一共16页</p>
+<p>思路：</p>
+<ol>
+<li>获取当前页48个链接。</li>
+<li>分别并点进去，拿到该电瓶车信息（名称和价格，其他信息获取方式一样，自行改就好😂）并存储。</li>
+<li>回到当前页，点击“下一页”</li>
+<li>获取下一页的信息</li>
+<li>重复步骤 1 - 4</li>
+</ol>
+<p>具体实现方式，以下有注释</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这是得到每个页面的48个链接，并开始发送请求</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">ad</span>(<span class="params">arg</span>)&#123;</span><br><span class="line">    <span class="comment">// 参数 arg 先不管</span></span><br><span class="line">    <span class="comment">// 本地化一下需要爬取的链接</span></span><br><span class="line">    <span class="keyword">let</span> url2 = arg || url;</span><br><span class="line">    <span class="comment">// 请求第一页该网页，拿到数据之后，复制给 app</span></span><br><span class="line">    <span class="keyword">var</span> app = <span class="keyword">await</span> <span class="title function_">fetch</span>(url2).<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>res.<span class="title function_">text</span>())</span><br><span class="line">    <span class="comment">// 然后假装用jQuery解析了</span></span><br><span class="line">    <span class="keyword">var</span> $ = cheerio.<span class="title function_">load</span>(app)</span><br><span class="line">    <span class="comment">// 获取当前页所有电瓶车的a标签</span></span><br><span class="line">    <span class="keyword">var</span> ele = $(<span class="string">&quot;#J_PicMode a.pic&quot;</span>)</span><br><span class="line">    <span class="comment">// 存放已经爬取过的url，防止重复爬取</span></span><br><span class="line">    <span class="keyword">var</span> old_urls = []</span><br><span class="line">    <span class="keyword">var</span> urlapp = []</span><br><span class="line">    <span class="comment">//拿到所有a标签地址之后，存在数组里面，等会儿要开始爬的</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; ele.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        old_urls.<span class="title function_">push</span>(<span class="title function_">fetch</span>(urlRoot+$(ele[i]).<span class="title function_">attr</span>(<span class="string">&#x27;href&#x27;</span>)).<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>res.<span class="title function_">text</span>()))</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 用把URL一块丢给promise处理</span></span><br><span class="line">    urlapp = <span class="keyword">await</span> <span class="title class_">Promise</span>.<span class="title function_">all</span>(old_urls)</span><br><span class="line">    <span class="comment">// 处理完成之后，循环加入jQuery😂</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; urlapp.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> $2 = cheerio.<span class="title function_">load</span>(urlapp[i],&#123;<span class="attr">decodeEntities</span>: <span class="literal">false</span>&#125;)</span><br><span class="line">        data.<span class="title function_">push</span>(&#123;</span><br><span class="line">            <span class="attr">name</span>:$2(<span class="string">&quot;.product-model__name&quot;</span>).<span class="title function_">text</span>(),</span><br><span class="line">            <span class="attr">price</span>:$2(<span class="string">&quot;.price-type&quot;</span>).<span class="title function_">text</span>()</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 至此，一页的数据就爬完了</span></span><br><span class="line">    <span class="comment">// console.log(data);</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 然后开始爬取下一页</span></span><br><span class="line">    <span class="keyword">var</span> nextURL = $(<span class="string">&quot;.next&quot;</span>).<span class="title function_">attr</span>(<span class="string">&#x27;href&#x27;</span>)</span><br><span class="line">    <span class="comment">// 判断当前页是不是最后一页</span></span><br><span class="line">    <span class="keyword">if</span> (nextURL)&#123;</span><br><span class="line">        <span class="keyword">let</span> next = <span class="keyword">await</span> <span class="title function_">fetch</span>(urlRoot+nextURL).<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>res.<span class="title function_">text</span>())</span><br><span class="line">        <span class="comment">// 获取下一页的标签，拿到地址，走你</span></span><br><span class="line">        <span class="title function_">ad</span>(urlRoot+nextURL)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">ad</span>()</span><br></pre></td></tr></table></figure>
+<p>完整代码如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cheerio = <span class="built_in">require</span>(<span class="string">&#x27;cheerio&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> fetch = <span class="built_in">require</span>(<span class="string">&#x27;node-fetch&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> url = <span class="string">&quot;http://detail.zol.com.cn/convenienttravel/hangzhou/#list_merchant_loc&quot;</span></span><br><span class="line"><span class="keyword">var</span> urlRoot = <span class="string">&quot;http://detail.zol.com.cn&quot;</span></span><br><span class="line"><span class="comment">// var url = &quot;http://localhost:3222/app1&quot;</span></span><br><span class="line"><span class="keyword">var</span> urls = <span class="keyword">new</span> <span class="title class_">Set</span>()</span><br><span class="line"><span class="keyword">var</span> data = [] </span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">ad</span>(<span class="params">arg</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> url2 = arg || url;</span><br><span class="line">    <span class="keyword">var</span> app = <span class="keyword">await</span> <span class="title function_">fetch</span>(url2).<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>res.<span class="title function_">text</span>())</span><br><span class="line">    <span class="keyword">var</span> $ = cheerio.<span class="title function_">load</span>(app)</span><br><span class="line">    <span class="keyword">var</span> ele = $(<span class="string">&quot;#J_PicMode a.pic&quot;</span>)</span><br><span class="line">    <span class="keyword">var</span> old_urls = []</span><br><span class="line">    <span class="keyword">var</span> urlapp = []</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; ele.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        old_urls.<span class="title function_">push</span>(<span class="title function_">fetch</span>(urlRoot+$(ele[i]).<span class="title function_">attr</span>(<span class="string">&#x27;href&#x27;</span>)).<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>res.<span class="title function_">text</span>()))</span><br><span class="line">    &#125;</span><br><span class="line">    urlapp = <span class="keyword">await</span> <span class="title class_">Promise</span>.<span class="title function_">all</span>(old_urls)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; urlapp.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> $2 = cheerio.<span class="title function_">load</span>(urlapp[i],&#123;<span class="attr">decodeEntities</span>: <span class="literal">false</span>&#125;)</span><br><span class="line">        data.<span class="title function_">push</span>(&#123;</span><br><span class="line">            <span class="attr">name</span>:$2(<span class="string">&quot;.product-model__name&quot;</span>).<span class="title function_">text</span>(),</span><br><span class="line">            <span class="attr">price</span>:$2(<span class="string">&quot;.price-type&quot;</span>).<span class="title function_">text</span>()</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> nextURL = $(<span class="string">&quot;.next&quot;</span>).<span class="title function_">attr</span>(<span class="string">&#x27;href&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> (nextURL)&#123;</span><br><span class="line">        <span class="keyword">let</span> next = <span class="keyword">await</span> <span class="title function_">fetch</span>(urlRoot+nextURL).<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>res.<span class="title function_">text</span>())</span><br><span class="line">        <span class="title function_">ad</span>(urlRoot+nextURL)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">ad</span>()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://iprogramme.github.io/MyBlog/2018/11/11/node.js%E7%88%AC%E8%99%AB%E4%B8%AD%E5%85%B3%E6%9D%91%E5%9C%A8%E7%BA%BF%E7%94%B5%E7%93%B6%E8%BD%A6%E4%BF%A1%E6%81%AF/" data-id="clpj81tip000cad9v6nx4hok8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/node-js/" rel="tag">node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2018/11/19/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B8%80%20%E4%B9%8B%20%E6%89%93%E5%8C%85/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2018/11/10/es6%E5%9F%BA%E7%A1%80%E4%B9%8Bpromise/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">es6基础之Promise</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/demo/">demo</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E7%88%AC%E8%99%AB/">爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Promise/" rel="tag">Promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6/" rel="tag">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6%EF%BC%8C%E5%89%8D%E7%AB%AF/" rel="tag">es6，前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/node-js/" rel="tag">node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/blog/tags/css/" style="font-size: 10px;">css</a> <a href="/blog/tags/es6/" style="font-size: 16.67px;">es6</a> <a href="/blog/tags/es6%EF%BC%8C%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">es6，前端</a> <a href="/blog/tags/html/" style="font-size: 10px;">html</a> <a href="/blog/tags/js/" style="font-size: 20px;">js</a> <a href="/blog/tags/node/" style="font-size: 10px;">node</a> <a href="/blog/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/blog/tags/promise/" style="font-size: 10px;">promise</a> <a href="/blog/tags/python/" style="font-size: 10px;">python</a> <a href="/blog/tags/web/" style="font-size: 10px;">web</a> <a href="/blog/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 13.33px;">前端</a> <a href="/blog/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/blog/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2018/11/20/js%E6%95%B0%E7%BB%84%E5%AF%B9%E8%B1%A1%E5%8E%BB%E9%87%8D/">js 数组对象去重</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/11/20/%E6%89%8B%E5%86%99promise%E5%88%86%E6%9E%90/">手把手教你写promise，帮你分析promise的执行过程</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/11/19/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B8%80%20%E4%B9%8B%20%E6%89%93%E5%8C%85/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/11/11/node.js%E7%88%AC%E8%99%AB%E4%B8%AD%E5%85%B3%E6%9D%91%E5%9C%A8%E7%BA%BF%E7%94%B5%E7%93%B6%E8%BD%A6%E4%BF%A1%E6%81%AF/">node.js爬虫中关村在线电瓶车信息</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/11/10/es6%E5%9F%BA%E7%A1%80%E4%B9%8Bpromise/">es6基础之Promise</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 郭减<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+
+  
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

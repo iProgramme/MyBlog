@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="博客">
+<meta property="og:url" content="https://iprogramme.github.io/MyBlog/index.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:locale">
+<meta property="article:author" content="郭减">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://iprogramme.github.io/MyBlog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-js数组对象去重" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018/11/20/js%E6%95%B0%E7%BB%84%E5%AF%B9%E8%B1%A1%E5%8E%BB%E9%87%8D/" class="article-date">
+  <time datetime="2018-11-19T16:00:00.000Z" itemprop="datePublished">2018-11-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/js/">js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2018/11/20/js%E6%95%B0%E7%BB%84%E5%AF%B9%E8%B1%A1%E5%8E%BB%E9%87%8D/">js 数组对象去重</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在js中，我们经常会碰到这样的一个问题：给一个数组对象去重</p>
+<p>如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [</span><br><span class="line">    &#123;<span class="attr">id</span>:<span class="number">123</span>,<span class="attr">name</span>:<span class="string">&#x27;xxx&#x27;</span>,<span class="attr">age</span>:<span class="number">12</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">id</span>:<span class="number">124</span>,<span class="attr">name</span>:<span class="string">&#x27;xxx&#x27;</span>,<span class="attr">age</span>:<span class="number">12</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">id</span>:<span class="number">125</span>,<span class="attr">name</span>:<span class="string">&#x27;xxx&#x27;</span>,<span class="attr">age</span>:<span class="number">12</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">id</span>:<span class="number">126</span>,<span class="attr">name</span>:<span class="string">&#x27;xxx&#x27;</span>,<span class="attr">age</span>:<span class="number">12</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">id</span>:<span class="number">127</span>,<span class="attr">name</span>:<span class="string">&#x27;xxx&#x27;</span>,<span class="attr">age</span>:<span class="number">12</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">id</span>:<span class="number">128</span>,<span class="attr">name</span>:<span class="string">&#x27;xxx&#x27;</span>,<span class="attr">age</span>:<span class="number">12</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">id</span>:<span class="number">129</span>,<span class="attr">name</span>:<span class="string">&#x27;xxx&#x27;</span>,<span class="attr">age</span>:<span class="number">12</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">id</span>:<span class="number">121</span>,<span class="attr">name</span>:<span class="string">&#x27;xxx&#x27;</span>,<span class="attr">age</span>:<span class="number">12</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">id</span>:<span class="number">122</span>,<span class="attr">name</span>:<span class="string">&#x27;xxx&#x27;</span>,<span class="attr">age</span>:<span class="number">12</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">id</span>:<span class="number">123</span>,<span class="attr">name</span>:<span class="string">&#x27;xxx&#x27;</span>,<span class="attr">age</span>:<span class="number">12</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">id</span>:<span class="number">124</span>,<span class="attr">name</span>:<span class="string">&#x27;xxx&#x27;</span>,<span class="attr">age</span>:<span class="number">12</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">id</span>:<span class="number">125</span>,<span class="attr">name</span>:<span class="string">&#x27;xxx1&#x27;</span>,<span class="attr">age</span>:<span class="number">12</span>&#125;,</span><br><span class="line">]</span><br><span class="line"><span class="comment">// 任务是将两个所有属性值相同的对象，只保留一个</span></span><br></pre></td></tr></table></figure>
+
+<p>我们知道，如果数组里面是简单数据类型，我们可以直接用 <code>es6</code> 的 <code>Set()</code> 就可以完成去重，那么对于数组中每一项都是对象的，如何去重才是最好的方式呢</p>
+<p>按照正常思维，就是将数组每一项和后面的每一项的每一个属性值做对比，如果全部相同，那么就保留一个，我们很容易写出类似如下的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> add = [arr[<span class="number">0</span>]]</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i &lt; arr.<span class="property">length</span>;i++)&#123;</span><br><span class="line">    <span class="keyword">var</span> flag = <span class="literal">true</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">0</span>;j &lt; add.<span class="property">length</span>; j++)&#123;</span><br><span class="line">        <span class="keyword">var</span> arrIstr = []</span><br><span class="line">        <span class="keyword">var</span> addIstr = []</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> arr[i])&#123;</span><br><span class="line">            arrIstr.<span class="title function_">push</span>(arr[i][key])</span><br><span class="line">            addIstr.<span class="title function_">push</span>(add[j][key])</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(arrIstr.<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>) == addIstr.<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>))&#123;</span><br><span class="line">            flag = <span class="literal">false</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">        add.<span class="title function_">push</span>(arr[i])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这么一大堆，层层的循环，无数的判断，分分钟想炸啊有木有，而且谁能明白，你这么一大堆的代码，目的仅仅是为了给一个数组对象去重😂</p>
+<p>那么有什么其他的好一点的办法去重吗？有人会说了 ， <code>es6</code> 啊，那么我们看看一般的 <code>es6</code> 写法如何</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://iprogramme.github.io/MyBlog/2018/11/20/js%E6%95%B0%E7%BB%84%E5%AF%B9%E8%B1%A1%E5%8E%BB%E9%87%8D/" data-id="clpj81tim0009ad9v6ra49w27" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/es6/" rel="tag">es6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-手写promise分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018/11/20/%E6%89%8B%E5%86%99promise%E5%88%86%E6%9E%90/" class="article-date">
+  <time datetime="2018-11-19T16:00:00.000Z" itemprop="datePublished">2018-11-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/js/">js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2018/11/20/%E6%89%8B%E5%86%99promise%E5%88%86%E6%9E%90/">手把手教你写promise，帮你分析promise的执行过程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">promise</span>(<span class="params">fn</span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> that = <span class="variable language_">this</span>;</span><br><span class="line">    <span class="keyword">var</span> state = <span class="string">&#x27;pending&#x27;</span>;</span><br><span class="line">    <span class="keyword">var</span> callbacks = []</span><br><span class="line">    <span class="keyword">var</span> value;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">resolve</span>(<span class="params">newValue</span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(newValue);</span><br><span class="line">        state = <span class="string">&#x27;fulfilled&#x27;</span>;</span><br><span class="line">        value = newValue</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;-----------&#x27;</span>)</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123; </span><br><span class="line">            callbacks.<span class="title function_">forEach</span>(<span class="keyword">function</span> (<span class="params">callback</span>) &#123;</span><br><span class="line">                <span class="title function_">handle</span>(callback);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">handle</span>(<span class="params">obj = &#123;&#125;</span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(state);</span><br><span class="line">        <span class="keyword">if</span>(state == <span class="string">&#x27;pending&#x27;</span>)&#123;</span><br><span class="line">            callbacks.<span class="title function_">push</span>(obj)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!obj.<span class="property">onFulfilled</span>) &#123;</span><br><span class="line">            obj.<span class="title function_">resolve</span>(value);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> ret = obj.<span class="title function_">onFulfilled</span>(value);  </span><br><span class="line">        obj.<span class="title function_">resolve</span>(ret) </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">then</span> = <span class="function">(<span class="params">onFulfilled</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title function_">promise</span>(<span class="function">(<span class="params">resolve</span>)=&gt;</span>&#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>); </span><br><span class="line">            <span class="title function_">handle</span>(&#123;</span><br><span class="line">                <span class="attr">onFulfilled</span>:onFulfilled,</span><br><span class="line">                <span class="attr">resolve</span>:resolve</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">fn</span>(resolve)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">4</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">new</span> <span class="title function_">promise</span>(<span class="function">(<span class="params">res</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">res</span>(<span class="number">111</span>)</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function">(<span class="params">data</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title function_">promise</span>(<span class="function">(<span class="params">res</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">6</span>)</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="title function_">res</span>(<span class="number">222</span>)</span><br><span class="line">        &#125;, <span class="number">1000</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function">(<span class="params">data</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">5</span>);</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">333</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>分析代码的运行顺序</p>
+<p>先假设所有的代码里面没有设立定时器</p>
+<p>主线程打印顺序为 <code>1，4，2，3，4，2，3，4</code></p>
+<ol>
+<li>new promise()   – 打印 1，打印 4</li>
+<li>.then()  – 打印 2</li>
+<li>.then 里面的 new promise() – 打印 3，打印 4</li>
+<li>第二个 .then – 打印 2</li>
+<li>第二个 .then 里面的 new promise() – 打印 3，打印 4</li>
+</ol>
+<p>主流程走完</p>
+<p>主流程解释：</p>
+<ol>
+<li>new promise() 为 new 了一个对象，上面都是变量方法的初始化，真正的代码只有两行就是 <code>fn(resolve);console.log(4);</code> 所以先出 1，后出 4</li>
+<li>.then()  打印 2，然后返回一个 new promise()</li>
+<li>上一步返回的 new promise() 运行，打印3（这个过程也就是执行了 handle 的过程），然后打印 4</li>
+<li>由于上一步返回的是一个新的 promise 对象，所以在外面可以直接再次 .then 而不会报错，那么这一次的 .then() 也就是上一个 promise 的then 而不是第一步里面的 new promise()</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://iprogramme.github.io/MyBlog/2018/11/20/%E6%89%8B%E5%86%99promise%E5%88%86%E6%9E%90/" data-id="clpj81tiu000jad9v7q5k9e77" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/es6/" rel="tag">es6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/promise/" rel="tag">promise</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-性能优化一 之 打包" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018/11/19/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B8%80%20%E4%B9%8B%20%E6%89%93%E5%8C%85/" class="article-date">
+  <time datetime="2018-11-19T02:45:37.000Z" itemprop="datePublished">2018-11-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前端页面性能优化一-之-打包"><a href="#前端页面性能优化一-之-打包" class="headerlink" title="前端页面性能优化一 之 打包"></a>前端页面性能优化一 之 打包</h2><p>说明：我这里用的是vue项目，vue-cli 3.0 ，本文以此为例</p>
+<p>解决问题的方式，都直接在“方法”里面写了，有不懂的，欢迎大家交流😂</p>
+<h3 id="去sourceMap"><a href="#去sourceMap" class="headerlink" title="去sourceMap"></a>去sourceMap</h3><p>方法：找到 vue.config.js 文件，找到 <code>productionSourceMap</code> 将其改为 <code>false</code> ，完</p>
+<p>效果：</p>
+<p>总结：可以看到，打包前，48个文件，其中有四个是以  <code>.map</code> 结尾的文件，这个时候，整个包大概有 6M，在将其改为false之后打包，只有 2.7M 的大小了，是不是很开心😯</p>
+<h3 id="打包-gzip"><a href="#打包-gzip" class="headerlink" title="打包 gzip"></a>打包 gzip</h3><p>方法：</p>
+<ul>
+<li>npm install compression-webpack-plugin –save-dev</li>
+<li>找到 <code>vue.config.js</code> 引入该包，<code>var  CompressionWebpackPlugin = require(&quot;compression-webpack-plugin&quot;)</code></li>
+<li>在 <code>module.exports</code> 里面配置该包</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    <span class="attr">configureWebpack</span>: <span class="function">(<span class="params">config</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(process.<span class="property">env</span>.<span class="property">NODE_ENV</span> == <span class="string">&#x27;production&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                <span class="attr">plugins</span>:[</span><br><span class="line">                    <span class="keyword">new</span> <span class="title class_">CompressionWebpackPlugin</span>(&#123;</span><br><span class="line">                        <span class="attr">test</span>:<span class="regexp">/\.js$|\.css$\.html$/</span>,</span><br><span class="line">                        <span class="attr">threshold</span>:<span class="number">10240</span>,</span><br><span class="line">                        <span class="attr">deleteOriginalAssets</span>:<span class="literal">false</span> <span class="comment">// 不删除原js文件</span></span><br><span class="line">                    &#125;)</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>服务端也要配置加载才行，这里我用的 <code>node.js</code> 和 <code>express</code> ，所以配置如下</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> compression = <span class="built_in">require</span>(<span class="string">&#x27;compression&#x27;</span>) <span class="comment">// 引入此包来加载</span></span><br><span class="line"><span class="keyword">var</span> app = <span class="title function_">express</span>()</span><br><span class="line">app.<span class="title function_">use</span>(<span class="title function_">compression</span>());</span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&quot;/blog&quot;</span>,express.<span class="title function_">static</span>(__dirname+<span class="string">&quot;/public&quot;</span>))</span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&quot;/&quot;</span>,express.<span class="title function_">static</span>(__dirname+<span class="string">&quot;/dist&quot;</span>))</span><br><span class="line">app.<span class="title function_">listen</span>(<span class="number">3000</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`loaclhost:3000`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>打包效果：</p>
+<p>页面加载速度效果：</p>
+<p>总结：这个需要后端配合加载才行。前端打包之后，会生成 <code>.gz</code> 结尾的文件，直接丢到服务端加载就好。 <code>deleteOriginalAssets</code> 也可以选为 <code>true</code> 这样打出的包更小，但由于直接用的是 <code>.gz</code> 的文件，所以源文件是否上传到服务器，影响不大，看个人喜好吧😂</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://iprogramme.github.io/MyBlog/2018/11/19/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B8%80%20%E4%B9%8B%20%E6%89%93%E5%8C%85/" data-id="clpj81tis000had9v6klff1qs" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-node.js爬虫中关村在线电瓶车信息" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018/11/11/node.js%E7%88%AC%E8%99%AB%E4%B8%AD%E5%85%B3%E6%9D%91%E5%9C%A8%E7%BA%BF%E7%94%B5%E7%93%B6%E8%BD%A6%E4%BF%A1%E6%81%AF/" class="article-date">
+  <time datetime="2018-11-10T16:00:00.000Z" itemprop="datePublished">2018-11-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2018/11/11/node.js%E7%88%AC%E8%99%AB%E4%B8%AD%E5%85%B3%E6%9D%91%E5%9C%A8%E7%BA%BF%E7%94%B5%E7%93%B6%E8%BD%A6%E4%BF%A1%E6%81%AF/">node.js爬虫中关村在线电瓶车信息</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>最近打算买一辆电瓶车来上下班，但又不知道哪个好，网上是各说纷纭啊，于是就想着，干脆用node.js自己写一个小爬虫，来爬一下中关村在线里面电瓶车的信息吧。</p>
+<p>（以后完整代码请前往 <a href="http://www.yubowen2003.com/">www.yubowen2003.com</a> 暂时还在建设中，欢迎大家提issue😂 。）</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>该demo采用node.js作为爬虫，为方便，有些地方使用es6语法，如有不懂，欢迎咨询😊</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ul>
+<li>第一步，引入需要的库</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cheerio = <span class="built_in">require</span>(<span class="string">&#x27;cheerio&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> fetch = <span class="built_in">require</span>(<span class="string">&#x27;node-fetch&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// cheerio 是一个类似浏览器端的jQuery，用来解析HTML的</span></span><br><span class="line"><span class="comment">// fetch 用来发送请求</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>第二步，设置初始的爬取的入口(我身处杭州，所以地区选了杭州的🤣)</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 初始url</span></span><br><span class="line"><span class="keyword">var</span> url = <span class="string">&quot;http://detail.zol.com.cn/convenienttravel/hangzhou/#list_merchant_loc&quot;</span></span><br><span class="line"><span class="comment">// 由于每个a标签下是相对路径，故需要一个根地址来拼接，如下</span></span><br><span class="line"><span class="keyword">var</span> urlRoot = <span class="string">&quot;http://detail.zol.com.cn&quot;</span> </span><br><span class="line"><span class="comment">// 存放所有url，之所以用set，是为了防止有相同的而重复爬去</span></span><br><span class="line"><span class="keyword">var</span> urls = <span class="keyword">new</span> <span class="title class_">Set</span>()</span><br><span class="line"><span class="comment">// 存储所有数据</span></span><br><span class="line"><span class="keyword">var</span> data = [] </span><br></pre></td></tr></table></figure>
+<p>至此，我们的准备部分结束了😅，接下来，开始表演了</p>
+<ul>
+<li>分析网页，思考爬取的方式</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/9/166f73fbf48b2e8c?w=2558&h=1466&f=png&s=1941192"></p>
+<p>每行4款，每页是48款，一共16页</p>
+<p>思路：</p>
+<ol>
+<li>获取当前页48个链接。</li>
+<li>分别并点进去，拿到该电瓶车信息（名称和价格，其他信息获取方式一样，自行改就好😂）并存储。</li>
+<li>回到当前页，点击“下一页”</li>
+<li>获取下一页的信息</li>
+<li>重复步骤 1 - 4</li>
+</ol>
+<p>具体实现方式，以下有注释</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这是得到每个页面的48个链接，并开始发送请求</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">ad</span>(<span class="params">arg</span>)&#123;</span><br><span class="line">    <span class="comment">// 参数 arg 先不管</span></span><br><span class="line">    <span class="comment">// 本地化一下需要爬取的链接</span></span><br><span class="line">    <span class="keyword">let</span> url2 = arg || url;</span><br><span class="line">    <span class="comment">// 请求第一页该网页，拿到数据之后，复制给 app</span></span><br><span class="line">    <span class="keyword">var</span> app = <span class="keyword">await</span> <span class="title function_">fetch</span>(url2).<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>res.<span class="title function_">text</span>())</span><br><span class="line">    <span class="comment">// 然后假装用jQuery解析了</span></span><br><span class="line">    <span class="keyword">var</span> $ = cheerio.<span class="title function_">load</span>(app)</span><br><span class="line">    <span class="comment">// 获取当前页所有电瓶车的a标签</span></span><br><span class="line">    <span class="keyword">var</span> ele = $(<span class="string">&quot;#J_PicMode a.pic&quot;</span>)</span><br><span class="line">    <span class="comment">// 存放已经爬取过的url，防止重复爬取</span></span><br><span class="line">    <span class="keyword">var</span> old_urls = []</span><br><span class="line">    <span class="keyword">var</span> urlapp = []</span><br><span class="line">    <span class="comment">//拿到所有a标签地址之后，存在数组里面，等会儿要开始爬的</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; ele.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        old_urls.<span class="title function_">push</span>(<span class="title function_">fetch</span>(urlRoot+$(ele[i]).<span class="title function_">attr</span>(<span class="string">&#x27;href&#x27;</span>)).<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>res.<span class="title function_">text</span>()))</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 用把URL一块丢给promise处理</span></span><br><span class="line">    urlapp = <span class="keyword">await</span> <span class="title class_">Promise</span>.<span class="title function_">all</span>(old_urls)</span><br><span class="line">    <span class="comment">// 处理完成之后，循环加入jQuery😂</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; urlapp.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> $2 = cheerio.<span class="title function_">load</span>(urlapp[i],&#123;<span class="attr">decodeEntities</span>: <span class="literal">false</span>&#125;)</span><br><span class="line">        data.<span class="title function_">push</span>(&#123;</span><br><span class="line">            <span class="attr">name</span>:$2(<span class="string">&quot;.product-model__name&quot;</span>).<span class="title function_">text</span>(),</span><br><span class="line">            <span class="attr">price</span>:$2(<span class="string">&quot;.price-type&quot;</span>).<span class="title function_">text</span>()</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 至此，一页的数据就爬完了</span></span><br><span class="line">    <span class="comment">// console.log(data);</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 然后开始爬取下一页</span></span><br><span class="line">    <span class="keyword">var</span> nextURL = $(<span class="string">&quot;.next&quot;</span>).<span class="title function_">attr</span>(<span class="string">&#x27;href&#x27;</span>)</span><br><span class="line">    <span class="comment">// 判断当前页是不是最后一页</span></span><br><span class="line">    <span class="keyword">if</span> (nextURL)&#123;</span><br><span class="line">        <span class="keyword">let</span> next = <span class="keyword">await</span> <span class="title function_">fetch</span>(urlRoot+nextURL).<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>res.<span class="title function_">text</span>())</span><br><span class="line">        <span class="comment">// 获取下一页的标签，拿到地址，走你</span></span><br><span class="line">        <span class="title function_">ad</span>(urlRoot+nextURL)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">ad</span>()</span><br></pre></td></tr></table></figure>
+<p>完整代码如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cheerio = <span class="built_in">require</span>(<span class="string">&#x27;cheerio&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> fetch = <span class="built_in">require</span>(<span class="string">&#x27;node-fetch&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> url = <span class="string">&quot;http://detail.zol.com.cn/convenienttravel/hangzhou/#list_merchant_loc&quot;</span></span><br><span class="line"><span class="keyword">var</span> urlRoot = <span class="string">&quot;http://detail.zol.com.cn&quot;</span></span><br><span class="line"><span class="comment">// var url = &quot;http://localhost:3222/app1&quot;</span></span><br><span class="line"><span class="keyword">var</span> urls = <span class="keyword">new</span> <span class="title class_">Set</span>()</span><br><span class="line"><span class="keyword">var</span> data = [] </span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">ad</span>(<span class="params">arg</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> url2 = arg || url;</span><br><span class="line">    <span class="keyword">var</span> app = <span class="keyword">await</span> <span class="title function_">fetch</span>(url2).<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>res.<span class="title function_">text</span>())</span><br><span class="line">    <span class="keyword">var</span> $ = cheerio.<span class="title function_">load</span>(app)</span><br><span class="line">    <span class="keyword">var</span> ele = $(<span class="string">&quot;#J_PicMode a.pic&quot;</span>)</span><br><span class="line">    <span class="keyword">var</span> old_urls = []</span><br><span class="line">    <span class="keyword">var</span> urlapp = []</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; ele.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        old_urls.<span class="title function_">push</span>(<span class="title function_">fetch</span>(urlRoot+$(ele[i]).<span class="title function_">attr</span>(<span class="string">&#x27;href&#x27;</span>)).<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>res.<span class="title function_">text</span>()))</span><br><span class="line">    &#125;</span><br><span class="line">    urlapp = <span class="keyword">await</span> <span class="title class_">Promise</span>.<span class="title function_">all</span>(old_urls)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; urlapp.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> $2 = cheerio.<span class="title function_">load</span>(urlapp[i],&#123;<span class="attr">decodeEntities</span>: <span class="literal">false</span>&#125;)</span><br><span class="line">        data.<span class="title function_">push</span>(&#123;</span><br><span class="line">            <span class="attr">name</span>:$2(<span class="string">&quot;.product-model__name&quot;</span>).<span class="title function_">text</span>(),</span><br><span class="line">            <span class="attr">price</span>:$2(<span class="string">&quot;.price-type&quot;</span>).<span class="title function_">text</span>()</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> nextURL = $(<span class="string">&quot;.next&quot;</span>).<span class="title function_">attr</span>(<span class="string">&#x27;href&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> (nextURL)&#123;</span><br><span class="line">        <span class="keyword">let</span> next = <span class="keyword">await</span> <span class="title function_">fetch</span>(urlRoot+nextURL).<span class="title function_">then</span>(<span class="function"><span class="params">res</span>=&gt;</span>res.<span class="title function_">text</span>())</span><br><span class="line">        <span class="title function_">ad</span>(urlRoot+nextURL)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">ad</span>()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://iprogramme.github.io/MyBlog/2018/11/11/node.js%E7%88%AC%E8%99%AB%E4%B8%AD%E5%85%B3%E6%9D%91%E5%9C%A8%E7%BA%BF%E7%94%B5%E7%93%B6%E8%BD%A6%E4%BF%A1%E6%81%AF/" data-id="clpj81tip000cad9v6nx4hok8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/node-js/" rel="tag">node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-es6基础之promise" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018/11/10/es6%E5%9F%BA%E7%A1%80%E4%B9%8Bpromise/" class="article-date">
+  <time datetime="2018-11-09T16:00:00.000Z" itemprop="datePublished">2018-11-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/js/">js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2018/11/10/es6%E5%9F%BA%E7%A1%80%E4%B9%8Bpromise/">es6基础之Promise</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>网上很多的教程，都讲的很详细，这里就不赘述了</p>
+<p>我只是希望你能用最快的方式学会使用它</p>
+<h2 id="Promise-含义"><a href="#Promise-含义" class="headerlink" title="Promise 含义"></a>Promise 含义</h2><p>Promise 是异步编程的一种解决方案，它由社区最早提出和实现，ES6 将其写进了语言标准，统一了用法，原生提供了Promise对象，是一个可以直接用的js对象（前端和node中都可以直接使用）</p>
+<p>前端离不开异步编程，在以前，我们用 ajax 进行数据交互的时候，经常碰到这种情况</p>
+<ol>
+<li>先调接口登陆.</li>
+<li>成功之后调接口获取登陆信息</li>
+<li>成功后调用左侧导航</li>
+<li>成功后调用某个页面的初始化数据，</li>
+<li>成功后，调用接口查询表格</li>
+</ol>
+<h3 id="为什么要使用-Promise"><a href="#为什么要使用-Promise" class="headerlink" title="为什么要使用 Promise"></a>为什么要使用 Promise</h3><p>这个时候，我们的代码就像这样</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">    <span class="attr">url</span>:<span class="string">&#x27;/url1&#x27;</span>,</span><br><span class="line">    <span class="attr">success</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        $.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">            <span class="attr">url</span>:<span class="string">&#x27;/url2&#x27;</span>,</span><br><span class="line">            <span class="attr">success</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">                <span class="comment">// ...</span></span><br><span class="line">                $.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">                    <span class="attr">url</span>:<span class="string">&#x27;/url3&#x27;</span>,</span><br><span class="line">                    <span class="attr">success</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">                        <span class="comment">// ...</span></span><br><span class="line">                        $.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">                            <span class="attr">url</span>:<span class="string">&#x27;/url4&#x27;</span>,</span><br><span class="line">                            <span class="attr">success</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">                                <span class="comment">// ...</span></span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>丑是丑了点，也稍微有点难懂，典型的金字塔代码，但代码没毛病，能跑起来就ok。但是！！！最大的问题在于，明天产品脑子一热，告诉你“那啥，你把第二步和第四步的顺序调换一下”，瞬间想炸啊有木有😂！！！即使提出来，也逃不出层层回调的坑爹掌心😂</p>
+<p>自从有了 Promise 之后，代码就变得好看了很多</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>)=&gt;</span>&#123;</span><br><span class="line">    $.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">        <span class="attr">url</span>:<span class="string">&#x27;/url1&#x27;</span>,</span><br><span class="line">        <span class="attr">success</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="comment">// ...</span></span><br><span class="line">            <span class="title function_">resolve</span>()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>)=&gt;</span>&#123;</span><br><span class="line">        $.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">            <span class="attr">url</span>:<span class="string">&#x27;/url2&#x27;</span>,</span><br><span class="line">            <span class="attr">success</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">                <span class="comment">// ...</span></span><br><span class="line">                <span class="title function_">resolve</span>()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>)=&gt;</span>&#123;</span><br><span class="line">        $.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">            <span class="attr">url</span>:<span class="string">&#x27;/url3&#x27;</span>,</span><br><span class="line">            <span class="attr">success</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">                <span class="comment">// ...</span></span><br><span class="line">                <span class="title function_">resolve</span>()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>于是，我们就可以不断的 <code>new</code> 和 <code>then</code> 下去，而如果需要更改顺序，我们只需要调换两个 <code>then</code> 的顺序就好</p>
+<p>所以，为什么要使用 <code>Promise</code> ？因为可以提高代码的可读性和可维护性</p>
+<h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><p><code>Promise</code> 的使用其实很简单，其实跟回调函数差不多，很容易懂</p>
+<p><code>Promise</code> 中带一个参数 <code>resolve</code> ，当异步操作结束之后，调用该方法就好，在外面就可以 <code>then</code> 了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">123</span>)</span><br><span class="line">        <span class="title function_">resolve</span>()</span><br><span class="line">    &#125;,<span class="number">300</span>)</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">456</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 123</span></span><br><span class="line"><span class="comment">// 456</span></span><br></pre></td></tr></table></figure>
+
+<p>总结： 虽然说 <code>Promise</code> 用起来很简单，但最好能自己手动实现一个 <code>Promise</code> 函数，另外， <code>Promise</code> 的用处很多，后面将陆续介绍</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://iprogramme.github.io/MyBlog/2018/11/10/es6%E5%9F%BA%E7%A1%80%E4%B9%8Bpromise/" data-id="clpj81ti10001ad9vd4brh5a9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Promise/" rel="tag">Promise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/es6%EF%BC%8C%E5%89%8D%E7%AB%AF/" rel="tag">es6，前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hexo搭建博客" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018/11/09/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="article-date">
+  <time datetime="2018-11-08T16:00:00.000Z" itemprop="datePublished">2018-11-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/js/">js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2018/11/09/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">hexo搭建个人博客教程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://iprogramme.github.io/MyBlog/2018/11/09/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" data-id="clpj81tik0008ad9vftku3hz8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/es6/" rel="tag">es6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-es6基础之常用的简单语法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018/11/08/es6%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%B8%B8%E7%94%A8%E7%9A%84%E7%AE%80%E5%8D%95%E8%AF%AD%E6%B3%95/" class="article-date">
+  <time datetime="2018-11-07T16:00:00.000Z" itemprop="datePublished">2018-11-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/js/">js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2018/11/08/es6%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%B8%B8%E7%94%A8%E7%9A%84%E7%AE%80%E5%8D%95%E8%AF%AD%E6%B3%95/">es6基础之常用的简单语法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文主要讲解 ES6 中 <strong>简单</strong> <strong>常用</strong> 的一些简单语法，不做过深介绍，深入介绍可异步阮一峰大神的 <a href="http://es6.ruanyifeng.com/#docs/intro">ECMAScript 6 入门</a></p>
+<h2 id="let-和-const"><a href="#let-和-const" class="headerlink" title="let 和 const"></a>let 和 const</h2><p>es6新增了两个声明变量的命令分别为 <code>let</code> 和 <code>const</code></p>
+<h3 id="let"><a href="#let" class="headerlink" title="let"></a>let</h3><p>let声明变量，在声明的时候才定义</p>
+<p>特点：只在当前代码块中有效（注意是“代码块”，而不是“作用域”）</p>
+<h4 id="用处"><a href="#用处" class="headerlink" title="用处"></a>用处</h4><p>为何要用 <code>let</code> ：当我们希望一个变量只在当前代码块有效，而不影响当前作用域的时候使用，例如以下两种情况</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i&lt;<span class="number">100</span>;i++)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 我们希望 i 仅仅在for循环里面使用</span></span><br><span class="line"><span class="comment">// 而且仅仅在当前的for 循环里面使用</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> obj)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 我们希望 key 仅仅在for循环里面使用</span></span><br><span class="line"><span class="comment">// 而且仅仅在当前的for 循环里面使用，如果使用 var，最终会留下一个变量 key 在内存中</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="用法解析"><a href="#用法解析" class="headerlink" title="用法解析"></a>用法解析</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(i);</span><br><span class="line"><span class="comment">// i is not defined</span></span><br></pre></td></tr></table></figure>
+<p>i 是在 <code>for</code> 循环里面声明使用的，故无法在外面使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="string">&#x27;abc&#x27;</span>;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码正确运行，输出了3次 <code>abc</code> ，这表明循环内部（花括号内部）的变量 <code>i</code> 与循环变量 <code>i</code> 不在同一个作用域，有各自单独的作用域。</p>
+<h4 id="暂时性死区"><a href="#暂时性死区" class="headerlink" title="暂时性死区"></a>暂时性死区</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">123</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    a = <span class="string">&#x27;abc&#x27;</span>; <span class="comment">// ReferenceError</span></span><br><span class="line">    <span class="keyword">let</span> a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// a is not defined</span></span><br></pre></td></tr></table></figure>
+
+<p>上面的代码中，按原有逻辑分析，<code>a</code> 开始为 <code>123</code> ，在 <code>if</code> 里面使用的时候，会到上一级去寻找 <code>a</code> 的定义和赋值的地方 ，于是能赋值成功才对。<br>但该赋值会报错，是因为 <code>let</code> 导致的</p>
+<p>ES6 明确规定，如果区块中存在 <code>let</code> 或 <code>const</code> 声明变量，那么在一开始就在当前代码块形成了一个块级封闭作用域，凡是在声明之前就使用这些变量，都会报错</p>
+<p>于是就产生了一个很有意思的问题</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> a12345</span><br><span class="line"><span class="keyword">let</span> a12345</span><br><span class="line"><span class="keyword">typeof</span> a123456</span><br></pre></td></tr></table></figure>
+<p>会发现 <code>a12345</code> 是报错，而一个没有声明的变量 <code>a123456</code> 却是 <code>undefined</code> </p>
+<h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><p>其实在一般使用的时候 const 和 let 区别不大</p>
+<h4 id="const特点"><a href="#const特点" class="headerlink" title="const特点"></a>const特点</h4><p>const 旨在定一个固定不变的变量</p>
+<p>注意：这个“固定不变”指的是内存地址</p>
+<p>举例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> num = <span class="number">10</span>;</span><br><span class="line">num = <span class="number">20</span> <span class="comment">// 报错</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = &#123;<span class="attr">age</span>:<span class="number">12</span>&#125;</span><br><span class="line">obj.<span class="property">age</span> = <span class="number">14</span> <span class="comment">// no problem</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="字符串模板"><a href="#字符串模板" class="headerlink" title="字符串模板"></a>字符串模板</h2><p>这个的用处真的是太大了</p>
+<p>我曾见过这样的代码：</p>
+<p>不知道你们看到这样的代码的时候，内心是不是很激动啊😂</p>
+<p>在 ES6 里面，如果有些地方不得不用字符串拼接的时候，可以这么使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a,b,c,d,e = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> html = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i&lt;<span class="number">20</span>;i++)&#123;</span><br><span class="line">    html+= <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div&gt;</span></span><br><span class="line"><span class="string">        &lt;span&gt;<span class="subst">$&#123;a&#125;</span>&lt;/span&gt;</span></span><br><span class="line"><span class="string">        &lt;span&gt;<span class="subst">$&#123;b&#125;</span>&lt;/span&gt;</span></span><br><span class="line"><span class="string">        &lt;span&gt;<span class="subst">$&#123;c&#125;</span>&lt;/span&gt;</span></span><br><span class="line"><span class="string">        &lt;span&gt;<span class="subst">$&#123;d&#125;</span>&lt;/span&gt;</span></span><br><span class="line"><span class="string">        &lt;span&gt;<span class="subst">$&#123;e*i&#125;</span>&lt;/span&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span></span><br><span class="line">&#125;</span><br><span class="line">$(<span class="string">&quot;.xxx&quot;</span>).<span class="title function_">append</span>(html)</span><br></pre></td></tr></table></figure>
+<p>在ES6中可以用 `  ` 来包裹字符串，</p>
+<ol>
+<li>在其中可以肆无忌惮的使用单引号和双引号。</li>
+<li>变量或者表达式 用 <code>$&#123;&#125;</code> 包裹起来</li>
+</ol>
+<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p>ES6 里面提供了函数的简写，也就是箭头函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title function_">ad</span> = (<span class="params"></span>)=&gt;&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">123</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="用处-1"><a href="#用处-1" class="headerlink" title="用处"></a>用处</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sum = <span class="number">0</span>;</span><br><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].<span class="title function_">map</span>(<span class="function">(<span class="params">item</span>)=&gt;</span>&#123;sum+=item&#125;)</span><br><span class="line"><span class="comment">// sum 6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 也可以简写为</span></span><br><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].<span class="title function_">map</span>( <span class="function"><span class="params">item</span> =&gt;</span>&#123;sum+=item&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>如果需要 <code>return</code> ，可以直接省略后面的花括号</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].<span class="title function_">map</span>( <span class="function"><span class="params">item</span> =&gt;</span> item * <span class="number">2</span> )</span><br><span class="line"><span class="comment">// [2,4,6]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>这里有个有意思的小例子</p>
+<p>注意的是，箭头函数里面 <code>this</code> 的作用域，是在定义的时候生效的，而不是在运行的时候生效，具体看阮一峰大神的<a href="http://es6.ruanyifeng.com/#docs/function#%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E7%82%B9">注意点</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">    <span class="attr">location</span>:<span class="string">&#x27;博文&#x27;</span>,</span><br><span class="line">    <span class="attr">add</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">location</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// obj2.add() == &#x27;博文&#x27;</span></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">    <span class="attr">location</span>:<span class="string">&#x27;博文&#x27;</span>,</span><br><span class="line">    <span class="attr">add</span>:<span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">location</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// obj2.add() != &#x27;博文&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>上面代码里面 <code>obj2</code> 里面的 <code>this</code> 发现指向的是 <code>window</code> 对象</p>
+<h2 id="数组和对象"><a href="#数组和对象" class="headerlink" title="数组和对象"></a>数组和对象</h2><p>数组和对象里面，用到的比较多的就是迭代吧</p>
+<p>以前我们复制一个数组或者对象的方法是以下这样</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].<span class="title function_">concat</span>([])</span><br><span class="line"><span class="keyword">var</span> arr2 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].<span class="title function_">splice</span>()</span><br><span class="line"><span class="keyword">var</span> arr3 = <span class="title class_">Object</span>.<span class="title function_">assign</span>([],[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"><span class="keyword">var</span> obj1 = <span class="title class_">Object</span>.<span class="title function_">assign</span>(&#123;&#125;,&#123;<span class="attr">age</span>:<span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>方法很多就不一一列举了</p>
+<p>在ES6中就方便多了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">var</span> arr1 = [...arr]</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj0 = &#123;<span class="attr">age</span>:<span class="number">123</span>&#125;</span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;<span class="attr">name</span>:<span class="string">&#x27;xxx&#x27;</span>&#125;</span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;...obj0,...obj1&#125;</span><br></pre></td></tr></table></figure>
+<p>不过要注意的是，这些复制的都是浅拷贝</p>
+<h3 id="数组常用方法"><a href="#数组常用方法" class="headerlink" title="数组常用方法"></a>数组常用方法</h3><p>以下四个方法，平时用的比较多的方法</p>
+<h4 id="map"><a href="#map" class="headerlink" title="map"></a>map</h4><p>.map 不改变原数组，生成一个新的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"><span class="keyword">var</span> sum = arr.<span class="title function_">map</span>( <span class="function"><span class="params">item</span> =&gt;</span> item*<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h4><p>.reduce 不改变原数组，第一个参数为计算后的值，也是最后返回的值，后面才是 <code>item</code> , <code>index</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"><span class="keyword">var</span> arrSum = arr.<span class="title function_">reduce</span>( <span class="function">(<span class="params">sum,item</span>) =&gt;</span> sum+item)</span><br><span class="line"><span class="comment">// arrSum == 10</span></span><br></pre></td></tr></table></figure>
+<h4 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h4><p>.map 不改变原数组，生成一个新的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"><span class="keyword">var</span> arr = arr.<span class="title function_">reduce</span>( <span class="function"><span class="params">item</span> =&gt;</span> item &gt;= <span class="number">3</span>)</span><br><span class="line"><span class="comment">// [3,4]</span></span><br></pre></td></tr></table></figure>
+<p>他跟 <code>.map</code> 方法很像，一般要对数据进行处理就用 <code>.map</code> 方法，而仅仅是过滤数据就用 <code>.filter</code></p>
+<h4 id="includes"><a href="#includes" class="headerlink" title="includes"></a>includes</h4><p><code>.includes</code> 判断数组是否存在某值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;s&#x27;</span>,<span class="string">&#x27;d&#x27;</span>,<span class="string">&#x27;f&#x27;</span>]</span><br><span class="line">arr.<span class="title function_">includes</span>(<span class="string">&#x27;s&#x27;</span>) <span class="comment">// true</span></span><br><span class="line">arr.<span class="title function_">includes</span>(<span class="string">&#x27;s&#x27;</span>,<span class="number">3</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p><code>includes</code> 第二个参数，查询的起始位置</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://iprogramme.github.io/MyBlog/2018/11/08/es6%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%B8%B8%E7%94%A8%E7%9A%84%E7%AE%80%E5%8D%95%E8%AF%AD%E6%B3%95/" data-id="clpj81tie0003ad9v6068bqc3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/es6/" rel="tag">es6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-将hexo部署到阿里云" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018/11/06/%E5%B0%86hexo%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91/" class="article-date">
+  <time datetime="2018-11-05T16:00:00.000Z" itemprop="datePublished">2018-11-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/js/">js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2018/11/06/%E5%B0%86hexo%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91/">本文教学如何将 hexo 博客部署到阿里云</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先登陆你的服务器</p>
+<h3 id="安装-yum"><a href="#安装-yum" class="headerlink" title="安装 yum"></a>安装 yum</h3><p>目的是为了安装Nginx，如果已经安装Nginx，这一步可以忽略</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install yum</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h3><p>在部署 Hexo 博客时推荐使用 Nginx 的主要原因有几点：</p>
+<ol>
+<li><p><strong>Web 服务器功能：</strong> Nginx 是一个高性能的反向代理服务器，它可以负责处理 HTTP 请求并将它们转发到相应的服务。对于 Hexo 博客，Nginx 可以作为 HTTP 服务器来提供博客的访问服务。</p>
+</li>
+<li><p><strong>负载均衡和反向代理：</strong> 如果你的 Hexo 博客访问量较大，Nginx 可以用作负载均衡器，分发流量到多个 Hexo 博客实例，提高系统的可伸缩性。同时，Nginx 的反向代理功能能够隐藏后端服务的细节，增强了安全性。</p>
+</li>
+<li><p><strong>静态文件服务：</strong> Hexo 生成的博客是静态文件，Nginx 在处理静态文件上有很高的效率。通过 Nginx 提供静态文件服务，可以减轻 Hexo 本身的负担，提高博客的加载速度。</p>
+</li>
+<li><p><strong>SSL&#x2F;TLS 支持：</strong> 如果你希望启用 HTTPS，Nginx 提供了方便的 SSL&#x2F;TLS 配置。它能够处理加密和解密操作，确保博客的数据传输是安全的。</p>
+</li>
+<li><p><strong>灵活的配置和强大的功能：</strong> Nginx 提供了灵活的配置文件，使得你能够根据需要进行自定义配置。此外，Nginx 还支持反向代理、缓存、压缩等功能，为博客提供了更多的性能和功能优化选项。</p>
+</li>
+</ol>
+<p>综合考虑这些因素，使用 Nginx 作为 Hexo 博客的前端服务器是一种常见的选择。然而，这并不是唯一的选择，你也可以考虑使用其他 Web 服务器或服务来托管 Hexo 博客，取决于你的需求和偏好。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y nginx</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://iprogramme.github.io/MyBlog/2018/11/06/%E5%B0%86hexo%E9%83%A8%E7%BD%B2%E5%88%B0%E9%98%BF%E9%87%8C%E4%BA%91/" data-id="clpj81tiq000dad9vbglm28u8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/es6/" rel="tag">es6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-浏览器基础之变量提升" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018/11/06/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/" class="article-date">
+  <time datetime="2018-11-05T16:00:00.000Z" itemprop="datePublished">2018-11-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/js/">js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2018/11/06/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/">浏览器基础之变量提升 -- JavaScript 预解析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是“变量提升”"><a href="#什么是“变量提升”" class="headerlink" title="什么是“变量提升”"></a>什么是“变量提升”</h2><p>首先上个例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">10</span></span><br><span class="line"><span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>上面这段代码估计大家都知道，打印的是undefined，因为js在加载的时候存在变量提升。上面的这段代码其实等同于这个：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line">a = <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<p>再举一个例子大家看看</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="literal">false</span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">10</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line"><span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+
+<p>我们可以发现，明明 <code>if</code> 语句里面的代码没有执行，但 <code>a</code> 的值依然是 <code>undefined</code>，说明预解析的过程并不受到 <code>if</code> 判断语句的影响</p>
+<p>这就是变量提升导致的</p>
+<ul>
+<li>变量提升的原因：<i>在当前作用域下，js运行之前，会把带有var和function关键字的事先声明，并在内存中安排好，这个过程叫做 <b>预解析</b>。然后再从上到下执行js语句。</i></li>
+<li>注意：预解析只会发生在通过<code>var</code>定义的变量和<code>function</code>上。</li>
+</ul>
+<h2 id="变量提升之-–-var和function区别"><a href="#变量提升之-–-var和function区别" class="headerlink" title="变量提升之 – var和function区别"></a>变量提升之 – var和function区别</h2><p>刚刚提到了 “有<code>var</code>和<code>function</code>关键字的事先声明”，那么 <code>function</code> 和 <code>var</code> 都是变量提升，他俩在提升的时候，是并列的顺序往下提升呢，还是有一定的规则呢，我们看个例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">add</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2345</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> add;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(add)</span><br></pre></td></tr></table></figure>
+
+<p>打印 <code>add</code> 之后发现了什么呢？ 结果是 <code>f add()&#123;console.log(2345)&#125;</code> 还是 <code>undefined</code> 呢？大家可以自行将声明的顺序调换一下，发现打印的还是一样的结果</p>
+<p>这其中就说明了两个问题</p>
+<ol>
+<li>js在预解析的时候， <code>function</code> 声明的变量，会覆盖 <code>var</code> 声明的变量</li>
+<li><code>function</code> ，不但声明了变量，而且定义了变量的内容（因为刚刚的add打印的是 <code>f add()&#123;console.log(2345)&#125;</code> ，而不是 <code>function()&#123;&#125;</code>）</li>
+</ol>
+<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><h3 id="let声明变量"><a href="#let声明变量" class="headerlink" title="let声明变量"></a>let声明变量</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line"><span class="keyword">let</span> a = <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<p>以上代码会报错 <code>a is not defined</code> ，说 <code>a</code> 未定义， <code>let</code> 是 ECMAScript 2015（es6）中声明变量的方式之一</p>
+<p>说明 <code>let</code> 定义的变量，不存在变量提升，即 <i>在哪定义变量，即在哪声明变量</i></p>
+<h2 id="测试题"><a href="#测试题" class="headerlink" title="测试题"></a>测试题</h2><p>试题如若不理解，请再次读一下<b>预解析</b>的定义：</p>
+<p><i>在当前作用域下，js运行之前，会把带有var和function关键字的事先声明，并在内存中安排好，这个过程叫做 <b>预解析</b>。然后再从上到下执行js语句。</i></p>
+<h3 id="试题1"><a href="#试题1" class="headerlink" title="试题1"></a>试题1</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">add</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> b;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">a</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(b)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="试题2"><a href="#试题2" class="headerlink" title="试题2"></a>试题2</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line">a = <span class="number">10</span></span><br><span class="line"><span class="comment">// 不声明而直接使用的变量是全局变量</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://iprogramme.github.io/MyBlog/2018/11/06/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9F%BA%E7%A1%80%E4%B9%8B%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/" data-id="clpj81tix000nad9vgeb0eqxf" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/es6/" rel="tag">es6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018/07/13/hello-world/" class="article-date">
+  <time datetime="2018-07-13T12:20:20.000Z" itemprop="datePublished">2018-07-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/demo/">demo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2018/07/13/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- 等下看 autoprefixer 和 路由懒加载 -->
+
+<h2 id="我为什么要写个博客？"><a href="#我为什么要写个博客？" class="headerlink" title="我为什么要写个博客？"></a>我为什么要写个博客？</h2><h3 id="技术方面"><a href="#技术方面" class="headerlink" title="技术方面"></a>技术方面</h3><ul>
+<li>网上技术博客，技术文章不计其数。我是为了用更简单的语言，让你更快的使用一个不太了解的东西，如果需要深入了解，再去百度其原理和高级用法等等</li>
+<li>为了给自己有个技术沉淀，把知识有个统筹规划</li>
+</ul>
+<h3 id="非技术方面"><a href="#非技术方面" class="headerlink" title="非技术方面"></a>非技术方面</h3><p>还在考虑是否也要放到这个博客系统里面哈哈哈</p>
+<!-- <blockquote><p>content</p>
+<footer><strong>[author[</strong><cite>source]] [link] [source_link_title]</cite></footer></blockquote> -->
+<!-- 
+
+Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
+
+## Quick Start
+
+### Create a new post
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/deployment.html">Deployment</a> –&gt;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://iprogramme.github.io/MyBlog/2018/07/13/hello-world/" data-id="clpj81tij0007ad9vgh35cebr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/css/" rel="tag">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/html/" rel="tag">html</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/node/" rel="tag">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/web/" rel="tag">web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/demo/">demo</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/js/">js</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/%E7%88%AC%E8%99%AB/">爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/Promise/" rel="tag">Promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/css/" rel="tag">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6/" rel="tag">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6%EF%BC%8C%E5%89%8D%E7%AB%AF/" rel="tag">es6，前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/node/" rel="tag">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/node-js/" rel="tag">node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/promise/" rel="tag">promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/blog/tags/css/" style="font-size: 10px;">css</a> <a href="/blog/tags/es6/" style="font-size: 16.67px;">es6</a> <a href="/blog/tags/es6%EF%BC%8C%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">es6，前端</a> <a href="/blog/tags/html/" style="font-size: 10px;">html</a> <a href="/blog/tags/js/" style="font-size: 20px;">js</a> <a href="/blog/tags/node/" style="font-size: 10px;">node</a> <a href="/blog/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/blog/tags/promise/" style="font-size: 10px;">promise</a> <a href="/blog/tags/python/" style="font-size: 10px;">python</a> <a href="/blog/tags/web/" style="font-size: 10px;">web</a> <a href="/blog/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 13.33px;">前端</a> <a href="/blog/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/blog/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2018/11/20/js%E6%95%B0%E7%BB%84%E5%AF%B9%E8%B1%A1%E5%8E%BB%E9%87%8D/">js 数组对象去重</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/11/20/%E6%89%8B%E5%86%99promise%E5%88%86%E6%9E%90/">手把手教你写promise，帮你分析promise的执行过程</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/11/19/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B8%80%20%E4%B9%8B%20%E6%89%93%E5%8C%85/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/11/11/node.js%E7%88%AC%E8%99%AB%E4%B8%AD%E5%85%B3%E6%9D%91%E5%9C%A8%E7%BA%BF%E7%94%B5%E7%93%B6%E8%BD%A6%E4%BF%A1%E6%81%AF/">node.js爬虫中关村在线电瓶车信息</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2018/11/10/es6%E5%9F%BA%E7%A1%80%E4%B9%8Bpromise/">es6基础之Promise</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 郭减<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+
+  
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
