@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "hexo generate --config source/_data/next.yml",
-    "clean": "hexo clean --config source/_data/next.yml",
-    "deploy": "hexo deploy --config source/_data/next.yml",
-    "server": "hexo server --config source/_data/next.yml"
+    "build": "hexo generate",
+    "clean": "hexo clean",
+    "deploy": "hexo deploy",
+    "server": "hexo server"
   },
   "hexo": {
     "version": "6.3.0"
