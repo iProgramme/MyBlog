@@ -2,8 +2,12 @@
 title: 本文教学如何将 hexo 博客部署到阿里云
 date: 2018/11/06
 updated: 2018/11/13
-tags: [js,es6,前端]
+tags:
+  - js
+  - es6
+  - 前端
 categories: js
+abbrlink: 827f6703
 ---
 
 首先登陆你的服务器

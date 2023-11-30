@@ -2,8 +2,12 @@
 title: node.js爬虫中关村在线电瓶车信息
 date: 2018/11/11
 updated: 2018/11/13
-tags: [js,node.js,爬虫]
+tags:
+  - js
+  - node.js
+  - 爬虫
 categories: 爬虫
+abbrlink: ddc6d610
 ---
 
 ### 背景

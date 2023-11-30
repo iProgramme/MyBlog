@@ -2,8 +2,12 @@
 title: es6基础之常用的简单语法
 date: 2018/11/08
 updated: 2018/11/13
-tags: [js,es6,前端]
+tags:
+  - js
+  - es6
+  - 前端
 categories: js
+abbrlink: 5ee4c1d
 ---
 
 本文主要讲解 ES6 中 **简单** **常用** 的一些简单语法，不做过深介绍，深入介绍可异步阮一峰大神的 [ECMAScript 6 入门](http://es6.ruanyifeng.com/#docs/intro)

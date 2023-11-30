@@ -2,8 +2,12 @@
 title: 手把手教你写promise，帮你分析promise的执行过程
 date: 2018/11/20
 updated: 2018/11/20
-tags: [js,promise,es6]
+tags:
+  - js
+  - promise
+  - es6
 categories: js
+abbrlink: 24001be4
 ---
 
 ```javascript

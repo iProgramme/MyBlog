@@ -2,8 +2,11 @@
 title: js 数组对象去重
 date: 2018/11/20
 updated: 2018/11/20
-tags: [js,es6]
+tags:
+  - js
+  - es6
 categories: js
+abbrlink: ffa2c49f
 ---
 
 在js中，我们经常会碰到这样的一个问题：给一个数组对象去重

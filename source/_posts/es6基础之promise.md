@@ -2,8 +2,12 @@
 title: es6基础之Promise
 date: 2018/11/10
 updated: 2018/11/13
-tags: [js,es6，前端,Promise]
+tags:
+  - js
+  - es6，前端
+  - Promise
 categories: js
+abbrlink: d3265847
 ---
 
 网上很多的教程，都讲的很详细，这里就不赘述了

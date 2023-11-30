@@ -11,3 +11,6 @@
 开启cnpm 
 cd ~/cnpmjs.org
 docker-compose up
+
+创建一个新的博客
+hexo new "博客名字"
