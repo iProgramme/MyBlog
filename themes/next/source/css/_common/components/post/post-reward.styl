@@ -43,16 +43,16 @@
 
   if (hexo-config('reward_settings.animation')) {
     > div:hover p {
-      animation: roll .1s infinite linear;
+      animation: roll 2s infinite linear;
     }
 
     @keyframes roll {
       from {
-        transform: rotateZ(30deg);
+        transform: rotateZ(0deg);
       }
 
       to {
-        transform: rotateZ(-30deg);
+        transform: rotateZ(360deg);
       }
     }
   }

@@ -1,26 +1,34 @@
+---
+title: next主题配置文件全解析
+abbrlink: eca4cdb6
+date: 2023-11-30 17:29:11
+tags:
+---
+
+```yml
 # ---------------------------------------------------------------
-# Theme Core Configuration Settings
+# 主题核心配置设置
 # See: https://theme-next.org/docs/theme-settings/
 # ---------------------------------------------------------------
 
-# If false, merge configs from `_data/next.yml` into default configuration (rewrite).
-# If true, will fully override default configuration by options from `_data/next.yml` (override). Only for NexT settings.
-# And if true, all config from default NexT `_config.yml` have to be copied into `next.yml`. Use if you know what you are doing.
-# Useful if you want to comment some options from NexT `_config.yml` by `next.yml` without editing default config.
+# 如果为false，则将“_data/next.yml”中的配置合并到默认配置中（重写）。
+# 如果为true，将通过`_data/next.yml`中的选项完全覆盖默认配置(重写)。仅适用于NexT设置。
+# 如果为true，则默认NexT `_config.yml`中的所有配置都必须复制到`NexT.yml'中。如果您知道自己在做什么，请使用。
+# 如果您想在不编辑默认配置的情况下，通过`NexT.yml`注释NexT `_config.yml'中的一些选项，这将非常有用。
 override: false
 
-# Console reminder if new version released.
+# 控制台提醒（如果发布了新版本）。
 reminder: false
 
-# Allow to cache content generation. Introduced in NexT v6.0.0.
+# 允许缓存内容生成。在NexT v6.0.0中引入。
 cache:
   enable: true
 
-# Remove unnecessary files after hexo generate.
+# 在hexo generate 后删除不必要的文件。
 minify: false
 
-# Define custom file paths.
-# Create your custom files in site directory `source/_data` and uncomment needed files below.
+# 定义自定义文件路径。
+# 在站点目录“source/_data”中创建自定义文件，并在下面取消对所需文件的注释。
 custom_file_path:
   #head: source/_data/head.swig
   #header: source/_data/header.swig
@@ -35,7 +43,7 @@ custom_file_path:
 
 
 # ---------------------------------------------------------------
-# Site Information Settings
+# 站点信息设置
 # See: https://theme-next.org/docs/getting-started/
 # ---------------------------------------------------------------
 
@@ -47,7 +55,7 @@ favicon:
   #android_manifest: /images/manifest.json
   #ms_browserconfig: /images/browserconfig.xml
 
-# Show multilingual switcher in footer.
+# 在页脚中显示多语言切换器
 language_switcher: false
 
 footer:
@@ -1015,3 +1023,5 @@ vendors:
 css: css
 js: js
 images: images
+
+```

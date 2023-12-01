@@ -10,6 +10,7 @@ abbrlink: af303a63
 date: 2023-11-30 09:29:39
 ---
 
+
 ## 1. 确认已安装hexo
 
 安装完的目录应该如下图
@@ -158,6 +159,8 @@ reward:
   wechat: image-20221130092900864.png
   alipay: image-20221130092900864.png
 ```
+
+将文件放在 `themes/next/source/images` 目录下
 
 ## 14. 修改永久链接的默认格式
 
