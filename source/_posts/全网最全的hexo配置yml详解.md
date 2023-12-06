@@ -1,3 +1,12 @@
+---
+title: 全网最全的hexo配置yml详解
+date: 2023-12-06 16:21:04
+tags:
+---
+
+该文章主要讲述了 hexo 的yml配置，包含每个字段的解释和作用
+
+```yml
 # Hexo 配置
 ## Docs: https://hexo.io/docs/configuration.html
 ## Source: https://github.com/hexojs/hexo/
@@ -118,3 +127,5 @@ deploy:
   type: git                  # 部署类型
   repo: git@github.com:iProgramme/MyBlog.git  # 仓库地址
   branch: gh-pages           # 部署的分支
+
+```
