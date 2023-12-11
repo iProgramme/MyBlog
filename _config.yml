@@ -33,8 +33,8 @@ abbrlink:
 permalink_defaults: posts/:abbrlink.html
 # 美化链接设置
 pretty_urls:
-  trailing_index: false # 设置为 false 以从永久链接中移除结尾的 'index.html'
-  trailing_html: false # 设置为 false 以从永久链接中移除结尾的 '.html'
+  trailing_index: true # 设置为 false 以从永久链接中移除结尾的 'index.html'
+  trailing_html: true # 设置为 false 以从永久链接中移除结尾的 '.html'
 
 # 目录设置
 source_dir: source          # 源文件目录

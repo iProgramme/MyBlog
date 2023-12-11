@@ -72,13 +72,13 @@ footer:
   # 中国用户的备案 ICP 和公安信息。 See: https://beian.miit.gov.cn, http://www.beian.gov.cn
   beian:
     enable: true
-    icp: zheshisha
+    icp: 浙ICP备
     # 公安备案的数字部分。
-    gongan_id: 123
+    gongan_id: 2023047536
     # 公安备案的完整编号。
-    gongan_num: 456
+    gongan_num: 2023047536
     # 公安备案的图标。 See: http://www.beian.gov.cn/portal/download
-    gongan_icon_url: http://www.beian.gov.cn/portal/download
+    gongan_icon_url: /images/beian.png
 
 # 知识共享4.0国际许可。
 # See: https://creativecommons.org/share-your-work/licensing-types-examples
